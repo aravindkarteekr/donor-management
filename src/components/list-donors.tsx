@@ -66,23 +66,25 @@ const ListDonors = ({
         <ListItem
           sx={{
             display: "grid",
-            gridTemplateColumns: "1fr 1fr 1fr 1fr auto",
+            gridTemplateColumns: "0.2fr 1fr 1fr 1fr 1fr auto",
           }}
         >
+          <Typography variant="overline">ID</Typography>
           <Typography variant="overline">Name</Typography>
           <Typography variant="overline">Place</Typography>
           <Typography variant="overline">Amount</Typography>
           <Typography variant="overline">Date</Typography>
           <Typography variant="overline">Action</Typography>
         </ListItem>
-        {donorsList.map((donor: Donor) => (
+        {donorsList.map((donor: Donor, idx) => (
           <ListItem
             sx={{
               display: "grid",
-              gridTemplateColumns: "1fr 1fr 1fr 1fr auto",
+              gridTemplateColumns: "0.2fr 1fr 1fr 1fr 1fr auto",
             }}
             key={donor.name}
           >
+            <Typography>{idx + 1}</Typography>
             <Typography>{donor.name}</Typography>
             <Typography>{donor.place}</Typography>
             <Typography>{donor.amount}</Typography>
