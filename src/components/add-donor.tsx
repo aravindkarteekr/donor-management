@@ -10,7 +10,7 @@ type AddDonorProps = {
 
 const AddDonor = ({ formData, setFormData, setDonorsList }: AddDonorProps) => {
   const handleAddDonor = () => {
-    const existingDonors = JSON.parse(localStorage.getItem("donors") || "[]");
+    const existingDonors = JSON.parse(localStorage.getItem("donors") ?? "[]");
     localStorage.setItem(
       "donors",
       JSON.stringify([
@@ -30,8 +30,10 @@ const AddDonor = ({ formData, setFormData, setDonorsList }: AddDonorProps) => {
   };
 
   return (
-    <Card sx={{ mb: 2 }}>
-      <Typography variant="subtitle1">Add donor</Typography>
+    <Card sx={{ my: 2 }}>
+      <Typography variant="h6" sx={{ p: 2 }}>
+        Add donor
+      </Typography>
       <Input
         sx={{
           m: 2,

@@ -1,23 +1,67 @@
-import { Card, IconButton, List, ListItem, Typography } from "@mui/material";
-import { Delete } from "@mui/icons-material";
+import {
+  Box,
+  Button,
+  Card,
+  IconButton,
+  List,
+  ListItem,
+  Typography,
+} from "@mui/material";
+import { Delete, PlayArrow } from "@mui/icons-material";
 import { Donor } from "../App";
+import { useNavigate } from "react-router-dom";
 
 type ListDonorsProps = {
   donorsList: Donor[];
   handleDeleteDonor: (id: string) => void;
+  handleDeleteAllDonors: () => void;
 };
 
-const ListDonors = ({ donorsList, handleDeleteDonor }: ListDonorsProps) => {
+const ListDonors = ({
+  donorsList,
+  handleDeleteDonor,
+  handleDeleteAllDonors,
+}: ListDonorsProps) => {
+  const navigate = useNavigate();
+
   return (
     <Card sx={{ mb: 2, height: 500, overflow: "auto" }}>
-      <Typography
-        variant="subtitle1"
+      <Box
         sx={{
-          p: 2,
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center",
         }}
       >
-        Donors
-      </Typography>
+        <Typography
+          variant="h6"
+          sx={{
+            p: 2,
+          }}
+        >
+          Donors
+        </Typography>
+        <Box>
+          <Button
+            variant="contained"
+            color="primary"
+            startIcon={<PlayArrow />}
+            sx={{ m: 2 }}
+            onClick={() => navigate("/show")}
+          >
+            Start Slideshow
+          </Button>
+          <Button
+            variant="outlined"
+            color="error"
+            startIcon={<Delete />}
+            sx={{ m: 2 }}
+            onClick={handleDeleteAllDonors}
+          >
+            Delete All
+          </Button>
+        </Box>
+      </Box>
       <List>
         <ListItem
           sx={{

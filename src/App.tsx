@@ -24,12 +24,12 @@ function App() {
   const [donorsList, setDonorsList] = useState<Donor[]>([]);
 
   useEffect(() => {
-    const existingDonors = JSON.parse(localStorage.getItem("donors") || "[]");
+    const existingDonors = JSON.parse(localStorage.getItem("donors") ?? "[]");
     setDonorsList(existingDonors);
   }, []);
 
   const handleDeleteDonor = (id: string) => {
-    const existingDonors = JSON.parse(localStorage.getItem("donors") || "[]");
+    const existingDonors = JSON.parse(localStorage.getItem("donors") ?? "[]");
     const updatedDonors = existingDonors.filter(
       (donor: { id: string }) => donor.id !== id
     );
@@ -37,12 +37,18 @@ function App() {
     setDonorsList(updatedDonors);
   };
 
+  const handleDeleteAllDonors = () => {
+    localStorage.removeItem("donors");
+    setDonorsList([]);
+  };
+
   return (
     <Container>
       <Typography
         variant="h4"
         sx={{
-          mb: 2,
+          margin: "20px auto",
+          textAlign: "center",
         }}
       >
         Donor management
@@ -55,6 +61,7 @@ function App() {
       <ListDonors
         donorsList={donorsList}
         handleDeleteDonor={handleDeleteDonor}
+        handleDeleteAllDonors={handleDeleteAllDonors}
       />
     </Container>
   );
